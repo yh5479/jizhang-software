@@ -1,4 +1,4 @@
-package com.getcapacitor.myapp;
+package com.example.consumptiontracker;
 
 import com.getcapacitor.BridgeActivity;
 
