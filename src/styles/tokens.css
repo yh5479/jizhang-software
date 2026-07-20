@@ -1,0 +1,60 @@
+/* ===== 设计令牌：双主题玻璃 ===== */
+:root,
+[data-theme='light'] {
+  --bg: #f2f2f7;
+  --primary: #007aff;
+
+  --c-expense: #ff2d55;
+  --c-time: #ff9500;
+  --c-income: #34c759;
+  --c-note: #af52de;
+  --c-asset: #5ac8fa;
+
+  --gradient-vibrant: linear-gradient(135deg, #ff2d55 0%, #ff9500 35%, #ffcc00 60%, #34c759 100%);
+
+  --glass-bg: rgba(255, 255, 255, 0.66);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-blur: blur(20px) saturate(160%);
+  --glass-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  --nav-bg: rgba(242, 242, 247, 0.7);
+  --text: #1c1c1e;
+  --text-on-glass: rgba(28, 28, 30, 0.92);
+  --text-secondary: #636366;
+
+  --radius-card: 22px;
+  --radius-btn: 14px;
+  --radius-chip: 999px;
+
+  --tab-active: #007aff;
+  --tab-active-bg: rgba(0, 122, 255, 0.14);
+  --blob-op: 0.26;
+}
+
+[data-theme='dark'] {
+  --bg: #121212;
+  --primary: #1db954;
+
+  --c-expense: #ff4632;
+  --c-time: #ffc862;
+  --c-note: #b967ff;
+  --c-asset: #4dd0e1;
+  --c-income: #1db954;
+
+  --gradient-vibrant: linear-gradient(160deg, #ff4632 0%, #ffc862 40%, #b967ff 75%, #1db954 100%);
+
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg-strong: rgba(255, 255, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-blur: blur(24px) saturate(140%);
+  --glass-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  --nav-bg: rgba(18, 18, 18, 0.7);
+  --text: #ffffff;
+  --text-on-glass: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+
+  --tab-active: #0a84ff;
+  --tab-active-bg: rgba(10, 132, 255, 0.22);
+  --blob-op: 0.24;
+}
