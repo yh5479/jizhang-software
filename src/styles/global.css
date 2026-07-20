@@ -48,6 +48,42 @@ textarea {
   background: #1c1c1e;
   box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55), 0 0 0 2px #2c2c2e;
 }
+
+/* 原生 App：全屏，不要模拟外框 */
+.phone.native {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.phone.native .screen {
+  border-radius: 0;
+}
+
+.phone.native .status-bar,
+.phone.native .home-indicator {
+  display: none;
+}
+
+.phone.native .screen-content {
+  padding: 8px 18px calc(96px + env(safe-area-inset-bottom));
+}
+
+.phone.native .tab-bar {
+  left: 16px;
+  right: 16px;
+  bottom: max(8px, env(safe-area-inset-bottom));
+}
+
+.phone.native .fab {
+  bottom: max(18px, env(safe-area-inset-bottom));
+}
+
 .screen {
   position: relative;
   width: 100%;

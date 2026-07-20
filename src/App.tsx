@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { ThemeProvider } from './theme/ThemeContext';
 import { TopNav } from './components/TopNav';
 import { TabBar, type TabKey } from './components/TabBar';
@@ -9,6 +10,8 @@ import { Settings } from './screens/Settings';
 import { ExpenseModal } from './screens/ExpenseModal';
 import { initDatabase } from './db/db';
 import { ensureSeed } from './db/repo';
+
+const IS_NATIVE = Capacitor.isNativePlatform();
 
 const TITLES: Record<TabKey, string> = {
   home: '记账',
@@ -46,21 +49,23 @@ function Shell() {
   const bump = () => setRefreshKey((k) => k + 1);
 
   return (
-    <div className="phone">
+    <div className={`phone ${IS_NATIVE ? 'native' : ''}`}>
       <div className="screen">
         <div className="blobs">
           <div className="blob b1" />
           <div className="blob b2" />
         </div>
 
-        <div className="status-bar">
-          <span>9:41</span>
-          <span className="icons">
-            <span style={{ fontSize: 11 }}>●●●</span>
-            <span style={{ fontSize: 11 }}>WiFi</span>
-            <span style={{ fontSize: 11 }}>100%</span>
-          </span>
-        </div>
+        {!IS_NATIVE && (
+          <div className="status-bar">
+            <span>9:41</span>
+            <span className="icons">
+              <span style={{ fontSize: 11 }}>●●●</span>
+              <span style={{ fontSize: 11 }}>WiFi</span>
+              <span style={{ fontSize: 11 }}>100%</span>
+            </span>
+          </div>
+        )}
 
         <TopNav title={TITLES[tab]} />
 
@@ -72,7 +77,7 @@ function Shell() {
 
         <TabBar active={tab} onChange={setTab} />
         <FAB onClick={() => setExpenseOpen(true)} />
-        <div className="home-indicator" />
+        {!IS_NATIVE && <div className="home-indicator" />}
 
         {expenseOpen && (
           <ExpenseModal onClose={() => setExpenseOpen(false)} onSaved={bump} />
