@@ -8,12 +8,14 @@ import {
   addPurchase,
   getItemComparison,
   listItemSummaries,
+  listPurchasesThisMonth,
   type ItemSummary,
 } from '../db/repo';
 import type { ComparedPurchase, ItemComparison } from '../logic/compare';
 import { buildBars } from '../logic/compare';
 import { buildPreviewText } from '../logic/unit';
 import { CATEGORIES, CAT_COLOR } from '../logic/categories';
+import type { Purchase } from '../types';
 
 const FILTERS = ['全部', ...CATEGORIES];
 const todayStr = () => new Date().toISOString().slice(0, 10);
@@ -292,16 +294,21 @@ function ItemDetailModal({
 }
 
 /* ---------- 主列表 ---------- */
-export function Compare({ refreshKey }: { refreshKey: number }) {
+export function Consumables({ refreshKey }: { refreshKey: number }) {
   const [filter, setFilter] = useState('全部');
   const [summaries, setSummaries] = useState<ItemSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [detailId, setDetailId] = useState<number | null>(null);
   const [showNew, setShowNew] = useState(false);
+  const [monthSum, setMonthSum] = useState(0);
+  const [monthCount, setMonthCount] = useState(0);
 
   const load = async () => {
     setLoading(true);
     setSummaries(await listItemSummaries(filter));
+    const month: Purchase[] = await listPurchasesThisMonth();
+    setMonthSum(month.reduce((s, p) => s + p.price, 0));
+    setMonthCount(month.length);
     setLoading(false);
   };
 
@@ -312,6 +319,20 @@ export function Compare({ refreshKey }: { refreshKey: number }) {
 
   return (
     <>
+      <GlassCard>
+        <div className="flex-between">
+          <div>
+            <div className="meta">本月消耗品支出</div>
+            <div className="title tabular" style={{ fontSize: 28 }}>
+              ￥{monthSum.toFixed(2)}
+            </div>
+          </div>
+          <div className="muted" style={{ textAlign: 'right' }}>
+            共 {monthCount} 次购买
+          </div>
+        </div>
+      </GlassCard>
+
       <div className="chip-row">
         {FILTERS.map((f) => (
           <button

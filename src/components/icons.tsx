@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 
-type IconName =
+export type IconName =
   | 'home'
   | 'compare'
   | 'user'
@@ -12,7 +12,10 @@ type IconName =
   | 'tag'
   | 'clock'
   | 'wallet'
-  | 'add';
+  | 'add'
+  | 'receipt'
+  | 'card'
+  | 'chart';
 
 const PATHS: Record<IconName, ReactNode> = {
   home: (
@@ -60,6 +63,19 @@ const PATHS: Record<IconName, ReactNode> = {
     </>
   ),
   add: <path d="M12 5v14M5 12h14" />,
+  receipt: (
+    <>
+      <path d="M5 3h14v18l-2.5-1.5L14 21l-2-1.5L10 21l-2.5-1.5L5 21V3Z" />
+      <path d="M9 8h6M9 12h6" />
+    </>
+  ),
+  card: (
+    <>
+      <rect x="3" y="6" width="18" height="13" rx="2" />
+      <path d="M3 10h18" />
+    </>
+  ),
+  chart: <path d="M5 20v-6M11 20V6M17 20v-9" />,
 };
 
 export function Icon({

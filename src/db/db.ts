@@ -41,6 +41,26 @@ const SCHEMA = [
     unit_price REAL NOT NULL,
     purchased_at TEXT NOT NULL
   )`,
+  `CREATE TABLE IF NOT EXISTS subscriptions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    price REAL NOT NULL,
+    cycle TEXT NOT NULL,
+    next_renewal TEXT NOT NULL,
+    auto_renew INTEGER DEFAULT 1,
+    status TEXT DEFAULT 'active',
+    note TEXT
+  )`,
+  `CREATE TABLE IF NOT EXISTS assets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT NOT NULL,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    value REAL NOT NULL,
+    note TEXT,
+    updated_at TEXT NOT NULL
+  )`,
 ];
 
 async function migrate(db: SQLiteDBConnection): Promise<void> {

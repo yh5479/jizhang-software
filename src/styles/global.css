@@ -80,10 +80,6 @@ textarea {
   bottom: max(8px, env(safe-area-inset-bottom));
 }
 
-.phone.native .fab {
-  bottom: max(18px, env(safe-area-inset-bottom));
-}
-
 .screen {
   position: relative;
   width: 100%;
@@ -226,6 +222,56 @@ textarea {
   transform: scale(0.92);
 }
 
+/* ===== 左上角头像（进入「我的」） ===== */
+.avatar-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background: var(--gradient-vibrant);
+  color: #fff;
+  flex: none;
+}
+.avatar-card {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gradient-vibrant);
+  color: #fff;
+  flex: none;
+}
+
+/* ===== 添加选择器选项 ===== */
+.add-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 12px;
+  border-radius: var(--radius-btn);
+  text-align: left;
+}
+.add-option:active {
+  background: var(--tab-active-bg);
+}
+.add-option-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--tab-active-bg);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
 /* ===== 底部 Tab Bar（长条孔 stadium 胶囊） ===== */
 .tab-bar {
   position: absolute;
@@ -248,11 +294,12 @@ textarea {
 .tab-item {
   position: relative;
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  min-width: 84px;
+  min-width: 0;
   height: 50px;
   border-radius: 16px;
   color: var(--text-secondary);
@@ -263,30 +310,28 @@ textarea {
   color: var(--tab-active);
 }
 .tab-item .tab-label {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 600;
 }
 
-/* ===== FAB（记一笔） ===== */
-.fab {
-  position: absolute;
-  z-index: 6;
-  left: 50%;
-  bottom: 50px;
-  transform: translateX(-50%);
-  width: 56px;
-  height: 56px;
+/* ===== 中心凸起添加按钮 ===== */
+.tab-add {
+  position: relative;
+  flex: none;
+  width: 54px;
+  height: 54px;
+  margin-top: -16px;
   border-radius: 50%;
   background: var(--primary);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
   transition: transform 0.15s ease;
 }
-.fab:active {
-  transform: translateX(-50%) scale(0.92);
+.tab-add:active {
+  transform: scale(0.92);
 }
 
 /* Home Indicator 示意 */

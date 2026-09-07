@@ -25,3 +25,29 @@ export interface Purchase {
   unit_price: number; // price / total_units
   purchased_at: string; // ISO 字符串
 }
+
+export type SubCycle = 'monthly' | 'quarterly' | 'semiannual' | 'yearly';
+
+export interface Subscription {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  cycle: SubCycle;
+  next_renewal: string; // ISO date
+  auto_renew: number; // 0/1
+  status: 'active' | 'cancelled';
+  note: string;
+}
+
+export type AssetType = 'money' | 'physical';
+
+export interface Asset {
+  id: number;
+  type: AssetType;
+  name: string;
+  category: string;
+  value: number;
+  note: string;
+  updated_at: string;
+}
